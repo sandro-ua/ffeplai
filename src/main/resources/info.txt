@@ -1,0 +1,11 @@
+These are new ones that currently work:
+All player/team data and more: https://fantasy.premierleague.com/drf/bootstrap-static
+Specific player: https://fantasy.premierleague.com/drf/element-summary/[player_id]
+Example Ospina: https://fantasy.premierleague.com/drf/element-summary/1
+
+EDIT: To find out about the links, you can check the APIs called by the fpl website client.
+On Chrome, go to view -> developer -> developer tools. Then click on the network tab. After that, click on a player
+ info in your team, and check the call that is being made on the network tab (see pic below).
+
+EDIT 2: You can see an example of implementation in Python here where you get interesting statistics about a certain league.
+You can use it as a starting point. https://github.com/spinach/FantasyPremierLeague-Api_Python
