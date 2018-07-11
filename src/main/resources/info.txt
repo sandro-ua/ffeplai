@@ -1,7 +1,29 @@
 These are new ones that currently work:
-All player/team data and more: https://fantasy.premierleague.com/drf/bootstrap-static
-Specific player: https://fantasy.premierleague.com/drf/element-summary/[player_id]
-Example Ospina: https://fantasy.premierleague.com/drf/element-summary/1
+All player/team data and more:
+https://fantasy.premierleague.com/drf/bootstrap-static
+
+Specific player:
+https://fantasy.premierleague.com/drf/element-summary/[player_id]
+
+My team:
+https://fantasy.premierleague.com/drf/my-team/110241/
+
+Players:
+https://fantasy.premierleague.com/drf/elements
+
+Events:
+https://fantasy.premierleague.com/drf/events
+
+ * https://fantasy.premierleague.com/drf/bootstrap-static
+ * https://fantasy.premierleague.com/drf/entry/${id}
+ * https://fantasy.premierleague.com/drf/entry/${id}/history
+ * https://fantasy.premierleague.com/drf/entry/${id}/event/{$event}/picks
+ * https://fantasy.premierleague.com/drf/entry/${id}/transfers
+ * https://fantasy.premierleague.com/drf/teams
+ *  * https://fantasy.premierleague.com/drf/events
+ * https://fantasy.premierleague.com/drf/game-settings
+ * https://fantasy.premierleague.com/drf/event/${event}/live
+ * https://fantasy.premierleague.com/drf/leagues-classic-standings/${id}
 
 EDIT: To find out about the links, you can check the APIs called by the fpl website client.
 On Chrome, go to view -> developer -> developer tools. Then click on the network tab. After that, click on a player
