@@ -9,8 +9,8 @@
         <module name="ffeplai" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="ffeplai" target="1.5" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="ffeplai" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
