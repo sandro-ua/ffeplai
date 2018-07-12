@@ -3,6 +3,7 @@ import java.net.MalformedURLException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 public class Ffeplai {
     public static void main(String[] args) throws MalformedURLException, SQLException {
@@ -12,8 +13,9 @@ public class Ffeplai {
 
         //Get fresh data
         Data freshData = new Data();
+        List<Player> players = null;
         try {
-            freshData.getDataFromJson();
+            players = freshData.getDataFromJson();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -24,6 +26,7 @@ public class Ffeplai {
         Connection conn = dbConnection.getConnection();
         */
 
-        
+        Fteam fTeam = new Fteam();
+        fTeam.selectGoalkeepres(players);
     }
 }

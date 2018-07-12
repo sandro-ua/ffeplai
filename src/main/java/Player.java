@@ -1,16 +1,16 @@
 public class Player {
 
-    private float id;
+    private int id;
     private String photo;
     private String web_name;
     private float team_code;
     private String status;
-    private float code;
+    private int code;
     private String first_name;
     private String second_name;
-    private float squad_number;
+    private int squad_number;
     private String news;
-    private float now_cost;
+    private int now_cost;
     private String news_added = null;
     private String chance_of_playing_this_round = null;
     private String chance_of_playing_next_round = null;
@@ -38,17 +38,17 @@ public class Player {
     private String ep_this = null;
     private String ep_next;
     private boolean special;
-    private float minutes;
-    private float goals_scored;
-    private float assists;
-    private float clean_sheets;
-    private float goals_conceded;
+    private int minutes;
+    private int goals_scored;
+    private int assists;
+    private int clean_sheets;
+    private int goals_conceded;
     private float own_goals;
     private float penalties_saved;
     private float penalties_missed;
-    private float yellow_cards;
-    private float red_cards;
-    private float saves;
+    private int yellow_cards;
+    private int red_cards;
+    private int saves;
     private float bonus;
     private float bps;
     private String influence;
@@ -57,7 +57,7 @@ public class Player {
     private String ict_index;
     private float ea_index;
     private float element_type;
-    private float team;
+    private int team;
 
 
     // Getter Methods
@@ -66,7 +66,7 @@ public class Player {
         return id;
     }
 
-    public void setId(float id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -106,7 +106,7 @@ public class Player {
         return code;
     }
 
-    public void setCode(float code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
@@ -130,7 +130,7 @@ public class Player {
         return squad_number;
     }
 
-    public void setSquad_number(float squad_number) {
+    public void setSquad_number(int squad_number) {
         this.squad_number = squad_number;
     }
 
@@ -146,7 +146,7 @@ public class Player {
         return now_cost;
     }
 
-    public void setNow_cost(float now_cost) {
+    public void setNow_cost(int now_cost) {
         this.now_cost = now_cost;
     }
 
@@ -372,7 +372,7 @@ public class Player {
         return minutes;
     }
 
-    public void setMinutes(float minutes) {
+    public void setMinutes(int minutes) {
         this.minutes = minutes;
     }
 
@@ -380,7 +380,7 @@ public class Player {
         return goals_scored;
     }
 
-    public void setGoals_scored(float goals_scored) {
+    public void setGoals_scored(int goals_scored) {
         this.goals_scored = goals_scored;
     }
 
@@ -388,7 +388,7 @@ public class Player {
         return assists;
     }
 
-    public void setAssists(float assists) {
+    public void setAssists(int assists) {
         this.assists = assists;
     }
 
@@ -396,7 +396,7 @@ public class Player {
         return clean_sheets;
     }
 
-    public void setClean_sheets(float clean_sheets) {
+    public void setClean_sheets(int clean_sheets) {
         this.clean_sheets = clean_sheets;
     }
 
@@ -404,7 +404,7 @@ public class Player {
         return goals_conceded;
     }
 
-    public void setGoals_conceded(float goals_conceded) {
+    public void setGoals_conceded(int goals_conceded) {
         this.goals_conceded = goals_conceded;
     }
 
@@ -436,7 +436,7 @@ public class Player {
         return yellow_cards;
     }
 
-    public void setYellow_cards(float yellow_cards) {
+    public void setYellow_cards(int yellow_cards) {
         this.yellow_cards = yellow_cards;
     }
 
@@ -444,7 +444,7 @@ public class Player {
         return red_cards;
     }
 
-    public void setRed_cards(float red_cards) {
+    public void setRed_cards(int red_cards) {
         this.red_cards = red_cards;
     }
 
@@ -452,7 +452,7 @@ public class Player {
         return saves;
     }
 
-    public void setSaves(float saves) {
+    public void setSaves(int saves) {
         this.saves = saves;
     }
 
@@ -524,7 +524,13 @@ public class Player {
         return team;
     }
 
-    public void setTeam(float team) {
+    public void setTeam(int team) {
         this.team = team;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(this.first_name + " " + this.second_name + "[" + this.team+ "]" +
+                " " + this.now_cost + System.lineSeparator());
     }
 }
