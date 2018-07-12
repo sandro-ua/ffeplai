@@ -1,9 +1,11 @@
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Ffeplai {
-    public static void main(String[] args) throws MalformedURLException {
+    public static void main(String[] args) throws MalformedURLException, SQLException {
 
         //Welcome!
         System.out.println("Welcome to ffeplai!" + System.lineSeparator());
@@ -16,7 +18,12 @@ public class Ffeplai {
             e.printStackTrace();
         }
 
-        Connection connection = connectionFactory.getConnection();
+        /*
+        //connect to DB
+        DbConnection dbConnection = new DbConnection();
+        Connection conn = dbConnection.getConnection();
+        */
 
+        
     }
 }
