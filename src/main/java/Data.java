@@ -1,11 +1,9 @@
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.xml.internal.bind.v2.TODO;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
 
@@ -26,9 +24,12 @@ public class Data {
     public List<Player> getDataFromJson() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 
-        List<Event> events = mapper.readValue(fileEvents, new TypeReference<List<Event>>() {});
-        List<Player> players = mapper.readValue(filePlayers, new TypeReference<List<Player>>() {});
-        List<Team> teams = mapper.readValue(fileTeams, new TypeReference<List<Team>>() {});
+        List<Event> events = mapper.readValue(fileEvents, new TypeReference<List<Event>>() {
+        });
+        List<Player> players = mapper.readValue(filePlayers, new TypeReference<List<Player>>() {
+        });
+        List<Team> teams = mapper.readValue(fileTeams, new TypeReference<List<Team>>() {
+        });
 
         //update DB
         //TODO:
@@ -39,10 +40,5 @@ public class Data {
         //Connection conn = dbConnection.getConnection();
 
         return players;
-
     }
-
-
-
-
 }

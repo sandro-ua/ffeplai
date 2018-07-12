@@ -27,6 +27,11 @@ public class Ffeplai {
         */
 
         Fteam fTeam = new Fteam();
-        fTeam.selectGoalkeepres(players);
+        //main GK
+        fTeam.gk = fTeam.selectGoalkeeper(players, 1, 999).get(0);
+        //sub GK
+        fTeam.gkSub = fTeam.selectSubGk(players, 1, 45).get(0);
+
+
     }
 }

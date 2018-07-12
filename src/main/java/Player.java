@@ -32,8 +32,8 @@ public class Player {
     private float loans_out;
     private float loaned_in;
     private float loaned_out;
-    private float total_points;
-    private float event_points;
+    private int total_points;
+    private int event_points;
     private String points_per_game;
     private String ep_this = null;
     private String ep_next;
@@ -51,10 +51,10 @@ public class Player {
     private int saves;
     private float bonus;
     private float bps;
-    private String influence;
-    private String creativity;
-    private String threat;
-    private String ict_index;
+    private float influence;
+    private float creativity;
+    private float threat;
+    private float ict_index;
     private float ea_index;
     private float element_type;
     private int team;
@@ -324,7 +324,7 @@ public class Player {
         return total_points;
     }
 
-    public void setTotal_points(float total_points) {
+    public void setTotal_points(int total_points) {
         this.total_points = total_points;
     }
 
@@ -332,7 +332,7 @@ public class Player {
         return event_points;
     }
 
-    public void setEvent_points(float event_points) {
+    public void setEvent_points(int event_points) {
         this.event_points = event_points;
     }
 
@@ -472,35 +472,35 @@ public class Player {
         this.bps = bps;
     }
 
-    public String getInfluence() {
+    public float getInfluence() {
         return influence;
     }
 
-    public void setInfluence(String influence) {
+    public void setInfluence(float influence) {
         this.influence = influence;
     }
 
-    public String getCreativity() {
+    public float getCreativity() {
         return creativity;
     }
 
-    public void setCreativity(String creativity) {
+    public void setCreativity(float creativity) {
         this.creativity = creativity;
     }
 
-    public String getThreat() {
+    public float getThreat() {
         return threat;
     }
 
-    public void setThreat(String threat) {
+    public void setThreat(float threat) {
         this.threat = threat;
     }
 
-    public String getIct_index() {
+    public float getIct_index() {
         return ict_index;
     }
 
-    public void setIct_index(String ict_index) {
+    public void setIct_index(float ict_index) {
         this.ict_index = ict_index;
     }
 
@@ -531,6 +531,6 @@ public class Player {
     @Override
     public String toString() {
         return String.format(this.first_name + " " + this.second_name + "[" + this.team+ "]" +
-                " " + this.now_cost + System.lineSeparator());
+                " " + this.now_cost + " " + this.total_points + System.lineSeparator());
     }
 }
