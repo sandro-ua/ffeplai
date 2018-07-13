@@ -3,7 +3,7 @@ public class Player {
     private int id;
     private String photo;
     private String web_name;
-    private float team_code;
+    private int team_code;
     private String status;
     private int code;
     private String first_name;
@@ -16,22 +16,22 @@ public class Player {
     private String chance_of_playing_next_round = null;
     private String value_form;
     private String value_season;
-    private float cost_change_start;
-    private float cost_change_event;
-    private float cost_change_start_fall;
-    private float cost_change_event_fall;
+    private int cost_change_start;
+    private int cost_change_event;
+    private int cost_change_start_fall;
+    private int cost_change_event_fall;
     private boolean in_dreamteam;
-    private float dreamteam_count;
+    private int dreamteam_count;
     private String selected_by_percent;
     private String form;
-    private float transfers_out;
-    private float transfers_in;
-    private float transfers_out_event;
-    private float transfers_in_event;
-    private float loans_in;
-    private float loans_out;
-    private float loaned_in;
-    private float loaned_out;
+    private int transfers_out;
+    private int transfers_in;
+    private int transfers_out_event;
+    private int transfers_in_event;
+    private int loans_in;
+    private int loans_out;
+    private int loaned_in;
+    private int loaned_out;
     private int total_points;
     private int event_points;
     private String points_per_game;
@@ -43,26 +43,26 @@ public class Player {
     private int assists;
     private int clean_sheets;
     private int goals_conceded;
-    private float own_goals;
-    private float penalties_saved;
-    private float penalties_missed;
+    private int own_goals;
+    private int penalties_saved;
+    private int penalties_missed;
     private int yellow_cards;
     private int red_cards;
     private int saves;
-    private float bonus;
-    private float bps;
+    private int bonus;
+    private int bps;
     private float influence;
     private float creativity;
     private float threat;
     private float ict_index;
-    private float ea_index;
-    private float element_type;
+    private int ea_index;
+    private int element_type;
     private int team;
 
 
     // Getter Methods
 
-    public float getId() {
+    public int getId() {
         return id;
     }
 
@@ -86,11 +86,11 @@ public class Player {
         this.web_name = web_name;
     }
 
-    public float getTeam_code() {
+    public int getTeam_code() {
         return team_code;
     }
 
-    public void setTeam_code(float team_code) {
+    public void setTeam_code(int team_code) {
         this.team_code = team_code;
     }
 
@@ -100,10 +100,6 @@ public class Player {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public float getCode() {
-        return code;
     }
 
     public void setCode(int code) {
@@ -126,7 +122,7 @@ public class Player {
         this.second_name = second_name;
     }
 
-    public float getSquad_number() {
+    public int getSquad_number() {
         return squad_number;
     }
 
@@ -142,7 +138,7 @@ public class Player {
         this.news = news;
     }
 
-    public float getNow_cost() {
+    public int getNow_cost() {
         return now_cost;
     }
 
@@ -190,35 +186,35 @@ public class Player {
         this.value_season = value_season;
     }
 
-    public float getCost_change_start() {
+    public int getCost_change_start() {
         return cost_change_start;
     }
 
-    public void setCost_change_start(float cost_change_start) {
+    public void setCost_change_start(int cost_change_start) {
         this.cost_change_start = cost_change_start;
     }
 
-    public float getCost_change_event() {
+    public int getCost_change_event() {
         return cost_change_event;
     }
 
-    public void setCost_change_event(float cost_change_event) {
+    public void setCost_change_event(int cost_change_event) {
         this.cost_change_event = cost_change_event;
     }
 
-    public float getCost_change_start_fall() {
+    public int getCost_change_start_fall() {
         return cost_change_start_fall;
     }
 
-    public void setCost_change_start_fall(float cost_change_start_fall) {
+    public void setCost_change_start_fall(int cost_change_start_fall) {
         this.cost_change_start_fall = cost_change_start_fall;
     }
 
-    public float getCost_change_event_fall() {
+    public int getCost_change_event_fall() {
         return cost_change_event_fall;
     }
 
-    public void setCost_change_event_fall(float cost_change_event_fall) {
+    public void setCost_change_event_fall(int cost_change_event_fall) {
         this.cost_change_event_fall = cost_change_event_fall;
     }
 
@@ -230,11 +226,11 @@ public class Player {
         this.in_dreamteam = in_dreamteam;
     }
 
-    public float getDreamteam_count() {
+    public int getDreamteam_count() {
         return dreamteam_count;
     }
 
-    public void setDreamteam_count(float dreamteam_count) {
+    public void setDreamteam_count(int dreamteam_count) {
         this.dreamteam_count = dreamteam_count;
     }
 
@@ -254,73 +250,74 @@ public class Player {
         this.form = form;
     }
 
-    public float getTransfers_out() {
+    public int getTransfers_out() {
         return transfers_out;
     }
 
-    public void setTransfers_out(float transfers_out) {
+    public void setTransfers_out(int transfers_out) {
         this.transfers_out = transfers_out;
     }
 
-    public float getTransfers_in() {
+    public int getTransfers_in() {
         return transfers_in;
     }
 
-    public void setTransfers_in(float transfers_in) {
+    public void setTransfers_in(int transfers_in) {
         this.transfers_in = transfers_in;
     }
 
-    public float getTransfers_out_event() {
+    public int getTransfers_out_event() {
         return transfers_out_event;
     }
 
-    public void setTransfers_out_event(float transfers_out_event) {
+    public void setTransfers_out_event(int transfers_out_event) {
         this.transfers_out_event = transfers_out_event;
     }
 
-    public float getTransfers_in_event() {
+    public int getTransfers_in_event() {
         return transfers_in_event;
     }
 
-    public void setTransfers_in_event(float transfers_in_event) {
+    public void setTransfers_in_event(int transfers_in_event) {
         this.transfers_in_event = transfers_in_event;
     }
 
-    public float getLoans_in() {
+    public int getLoans_in() {
         return loans_in;
     }
 
-    public void setLoans_in(float loans_in) {
+    public void setLoans_in(int loans_in) {
         this.loans_in = loans_in;
     }
 
+
     // Setter Methods
 
-    public float getLoans_out() {
+    public int getLoans_out() {
         return loans_out;
     }
 
-    public void setLoans_out(float loans_out) {
+    public void setLoans_out(int loans_out) {
         this.loans_out = loans_out;
     }
 
-    public float getLoaned_in() {
+    public int getLoaned_in() {
         return loaned_in;
     }
 
-    public void setLoaned_in(float loaned_in) {
+    public void setLoaned_in(int loaned_in) {
         this.loaned_in = loaned_in;
     }
 
-    public float getLoaned_out() {
+    public int getLoaned_out() {
         return loaned_out;
     }
 
-    public void setLoaned_out(float loaned_out) {
+    public void setLoaned_out(int loaned_out) {
         this.loaned_out = loaned_out;
     }
 
-    public float getTotal_points() {
+    public int getTotal_points() {
         return total_points;
     }
 
@@ -328,7 +325,7 @@ public class Player {
         this.total_points = total_points;
     }
 
-    public float getEvent_points() {
+    public int getEvent_points() {
         return event_points;
     }
 
@@ -368,7 +365,7 @@ public class Player {
         this.special = special;
     }
 
-    public float getMinutes() {
+    public int getMinutes() {
         return minutes;
     }
 
@@ -376,7 +373,7 @@ public class Player {
         this.minutes = minutes;
     }
 
-    public float getGoals_scored() {
+    public int getGoals_scored() {
         return goals_scored;
     }
 
@@ -384,7 +381,7 @@ public class Player {
         this.goals_scored = goals_scored;
     }
 
-    public float getAssists() {
+    public int getAssists() {
         return assists;
     }
 
@@ -392,7 +389,7 @@ public class Player {
         this.assists = assists;
     }
 
-    public float getClean_sheets() {
+    public int getClean_sheets() {
         return clean_sheets;
     }
 
@@ -400,7 +397,7 @@ public class Player {
         this.clean_sheets = clean_sheets;
     }
 
-    public float getGoals_conceded() {
+    public int getGoals_conceded() {
         return goals_conceded;
     }
 
@@ -408,31 +405,31 @@ public class Player {
         this.goals_conceded = goals_conceded;
     }
 
-    public float getOwn_goals() {
+    public int getOwn_goals() {
         return own_goals;
     }
 
-    public void setOwn_goals(float own_goals) {
+    public void setOwn_goals(int own_goals) {
         this.own_goals = own_goals;
     }
 
-    public float getPenalties_saved() {
+    public int getPenalties_saved() {
         return penalties_saved;
     }
 
-    public void setPenalties_saved(float penalties_saved) {
+    public void setPenalties_saved(int penalties_saved) {
         this.penalties_saved = penalties_saved;
     }
 
-    public float getPenalties_missed() {
+    public int getPenalties_missed() {
         return penalties_missed;
     }
 
-    public void setPenalties_missed(float penalties_missed) {
+    public void setPenalties_missed(int penalties_missed) {
         this.penalties_missed = penalties_missed;
     }
 
-    public float getYellow_cards() {
+    public int getYellow_cards() {
         return yellow_cards;
     }
 
@@ -440,7 +437,7 @@ public class Player {
         this.yellow_cards = yellow_cards;
     }
 
-    public float getRed_cards() {
+    public int getRed_cards() {
         return red_cards;
     }
 
@@ -448,7 +445,7 @@ public class Player {
         this.red_cards = red_cards;
     }
 
-    public float getSaves() {
+    public int getSaves() {
         return saves;
     }
 
@@ -456,19 +453,19 @@ public class Player {
         this.saves = saves;
     }
 
-    public float getBonus() {
+    public int getBonus() {
         return bonus;
     }
 
-    public void setBonus(float bonus) {
+    public void setBonus(int bonus) {
         this.bonus = bonus;
     }
 
-    public float getBps() {
+    public int getBps() {
         return bps;
     }
 
-    public void setBps(float bps) {
+    public void setBps(int bps) {
         this.bps = bps;
     }
 
@@ -504,23 +501,23 @@ public class Player {
         this.ict_index = ict_index;
     }
 
-    public float getEa_index() {
+    public int getEa_index() {
         return ea_index;
     }
 
-    public void setEa_index(float ea_index) {
+    public void setEa_index(int ea_index) {
         this.ea_index = ea_index;
     }
 
-    public float getElement_type() {
+    public int getElement_type() {
         return element_type;
     }
 
-    public void setElement_type(float element_type) {
+    public void setElement_type(int element_type) {
         this.element_type = element_type;
     }
 
-    public float getTeam() {
+    public int getTeam() {
         return team;
     }
 
@@ -528,9 +525,12 @@ public class Player {
         this.team = team;
     }
 
+    protected void printPlayer() {
+        System.out.println(String.format(this.first_name + " " + this.second_name + " [" + this.team+ "] " + this.now_cost + " " + this.total_points));
+    }
+/*
     @Override
     public String toString() {
-        return String.format(this.first_name + " " + this.second_name + "[" + this.team+ "]" +
-                " " + this.now_cost + " " + this.total_points + System.lineSeparator());
-    }
+        return String.format(this.first_name + " " + this.second_name + " [" + this.team+ "] " + this.now_cost + " " + this.total_points + "\n");
+    }*/
 }

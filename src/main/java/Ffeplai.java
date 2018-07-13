@@ -1,8 +1,6 @@
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 public class Ffeplai {
@@ -28,10 +26,28 @@ public class Ffeplai {
 
         Fteam fTeam = new Fteam();
         //main GK
-        fTeam.gk = fTeam.selectGoalkeeper(players, 1, 999).get(0);
+        fTeam.gk = fTeam.selectMainGk(players, 1, 999).get(0);
         //sub GK
         fTeam.gkSub = fTeam.selectSubGk(players, 1, 45).get(0);
+        fTeam.df = fTeam.selectDfs (players, 5, 650);
+        fTeam.md = fTeam.selectMds (players, 5, 1000);
+        fTeam.fw = fTeam.selectFws (players, 3, 1000);
+
+        fTeam.currentSquad.add (fTeam.gk);
+        fTeam.currentSquad.add (fTeam.gkSub);
+        fTeam.currentSquad.addAll (fTeam.df);
+        fTeam.currentSquad.addAll (fTeam.md);
+        fTeam.currentSquad.addAll (fTeam.fw);
+
+        fTeam.currentTotalPrice = fTeam.currentSquad.stream().mapToInt(Player::getNow_cost).sum();
+        fTeam.remainingBalance = 1000 - fTeam.currentTotalPrice;
 
 
+
+        fTeam.printFteam(fTeam);
+
+
+        System.out.println(System.lineSeparator() + "Total price: " + fTeam.currentTotalPrice);
+        System.out.println("Remaining Balance: " + fTeam.remainingBalance);
     }
 }
