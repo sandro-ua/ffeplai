@@ -50,7 +50,7 @@ public class Fteam {
                 .filter(p -> p.getClean_sheets() > 10)
                 .filter(p -> p.getNow_cost() < maxCost)
                 .filter(p -> p.getInfluence() > 800.0)
-                .sorted(Comparator.comparing(Player::getSaves))
+                .sorted(Comparator.comparing(Player::getTotal_points))
                 .limit(resultQuantity)
                 .collect(toList());
         return gks_only;
@@ -62,7 +62,7 @@ public class Fteam {
         List<Player> gks_only = allPlayers.stream()
                 .filter(p -> p.getElement_type() == 1)
                 .filter(p -> p.getNow_cost() < maxCost)
-                .sorted(Comparator.comparing(Player::getSaves))
+                .sorted(Comparator.comparing(Player::getTotal_points))
                 .limit(resultQuantity)
                 .collect(toList());
 
@@ -74,7 +74,7 @@ public class Fteam {
         List<Player> defs_only = allPlayers.stream()
                 .filter(p -> p.getElement_type() == 2)
                 .filter(p -> p.getNow_cost() < maxCost)
-                .sorted(Comparator.comparing(Player::getClean_sheets).reversed())
+                .sorted(Comparator.comparing(Player::getPoints_per_game).reversed())
                 .limit(resultQuantity)
                 .collect(toList());
         return defs_only;
@@ -85,7 +85,7 @@ public class Fteam {
         List<Player> mds_only = allPlayers.stream()
                 .filter(p -> p.getElement_type() == 3)
                 .filter(p -> p.getNow_cost() < maxCost)
-                .sorted(Comparator.comparing(Player::getAssists).reversed())
+                .sorted(Comparator.comparing(Player::getPoints_per_game).reversed())
                 .limit(resultQuantity)
                 .collect(toList());
         return mds_only;
