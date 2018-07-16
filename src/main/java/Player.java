@@ -34,7 +34,7 @@ public class Player {
     private int loaned_out;
     private int total_points;
     private int event_points;
-    private String points_per_game;
+    private float points_per_game;
     private String ep_this = null;
     private String ep_next;
     private boolean special;
@@ -58,6 +58,10 @@ public class Player {
     private int ea_index;
     private int element_type;
     private int team;
+
+    public Player() {
+
+    }
 
 
     // Getter Methods
@@ -333,11 +337,11 @@ public class Player {
         this.event_points = event_points;
     }
 
-    public String getPoints_per_game() {
+    public float getPoints_per_game() {
         return points_per_game;
     }
 
-    public void setPoints_per_game(String points_per_game) {
+    public void setPoints_per_game(float points_per_game) {
         this.points_per_game = points_per_game;
     }
 

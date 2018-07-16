@@ -1,7 +1,11 @@
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 public class Ffeplai {
     public static void main(String[] args) throws MalformedURLException, SQLException {
@@ -45,6 +49,34 @@ public class Ffeplai {
         fTeam.printFteam(fTeam);
 
         System.out.println(System.lineSeparator() + "Total price: " + fTeam.currentTotalPrice);
-        System.out.println("Remaining Balance: " + fTeam.remainingBalance);
+        System.out.println("Remaining Balance: " + fTeam.remainingBalance + System.lineSeparator());
+
+        //working with normalized rating
+
+        //Player pl = new Player();
+        //Fgk fPlayer = new Fgk(pl);
+
+        List<Fgk> fGks = new ArrayList<>();
+
+        for (Player pl : players) {
+            if (pl.getElement_type() == 1)
+            fGks.add((new Fgk(pl)));
+        }
+
+        for (Fgk gk : fGks) {
+            gk.calcPointsPerGameRating(fGks, gk, 10);
+        }
+
+        //selecting 5 gks
+        fGks = fGks.stream().sorted(Comparator.comparing(Fgk::getPointsPointsPerGame)
+                .reversed())
+                .limit(5)
+                .collect(toList());
+
+        //print top 5 gks
+        for (Fgk gk : fGks) {
+            gk.printPlayer();
+        }
+
     }
 }
