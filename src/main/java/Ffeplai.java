@@ -54,32 +54,31 @@ public class Ffeplai {
         //working with normalized rating
 
         //Player pl = new Player();
-        //Fgk fPlayer = new Fgk(pl);
+        //Fplayer fPlayer = new Fplayer(pl);
 
-        List<Fgk> fGks = new ArrayList<>();
+        List<Fplayer> fGks = new ArrayList<>();
 
         for (Player pl : players) {
             if (pl.getElement_type() == 1)
-            fGks.add((new Fgk(pl)));
+            fGks.add((new Fplayer(pl)));
         }
 
-        for (Fgk gk : fGks) {
+        for (Fplayer gk : fGks) {
             gk.calcPointsPerGameRating(fGks, gk, 10);
             gk.calcCleanSheetsRating(fGks, gk, 10);
             gk.calcSavesRating(fGks, gk, 10);
             gk.calcBpsRating(fGks, gk, 10);
+            gk.calcPenaltiesSavedRating(fGks, gk, 5);
         }
 
         //selecting 5 gks
-        fGks = fGks.stream().sorted(Comparator.comparing(Fgk::getNormalizedRating)
+        fGks = fGks.stream().sorted(Comparator.comparing(Fplayer::getNormalizedRating)
                 .reversed())
-                .limit(10)
                 .collect(toList());
 
         //print top 5 gks
-        for (Fgk gk : fGks) {
+        for (Fplayer gk : fGks) {
             gk.printPlayer();
         }
-
     }
 }

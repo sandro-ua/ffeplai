@@ -1,31 +1,16 @@
 import java.util.Comparator;
 import java.util.List;
 
-//select GK
-/*
-        "now_cost": 50,
-        "chance_of_playing_this_round": null,
-        "value_form": "0.0",
-        "value_season": "0.0",
-        "form": "0.0",
-        "total_points": 124,
-        "event_points": 0,
-        "points_per_game": "3.6",
-        "clean_sheets": 11,
-        "penalties_saved": 1,
-        "saves": 90,
-        "bps": 627, https://www.premierleague.com/news/106533
-*/
-
-public class Fgk extends Player {
+public class Fplayer extends Player {
 
     protected float normalizedRating;
     protected float pointsPointsPerGame;
     protected float pointsCleanSheets;
     protected float pointsSaves;
     protected float pointsBps;
+    protected float penaltiesSaved;
 
-    public Fgk(Player pl) {
+    public Fplayer(Player pl) {
         super();
         this.setNow_cost(pl.getNow_cost());
         this.setFirst_name(pl.getFirst_name());
@@ -33,10 +18,21 @@ public class Fgk extends Player {
         this.setTeam(pl.getTeam());
         this.setTotal_points(pl.getTotal_points());
 
+        //gk
         this.setPoints_per_game(pl.getPoints_per_game());
         this.setClean_sheets(pl.getClean_sheets());
         this.setSaves(pl.getSaves());
         this.setBps(pl.getBps());
+        this.setPenaltiesSaved(pl.getPenalties_saved());
+
+    }
+
+    public float getPenaltiesSaved() {
+        return penaltiesSaved;
+    }
+
+    public void setPenaltiesSaved(float penaltiesSaved) {
+        this.penaltiesSaved = penaltiesSaved;
     }
 
     public float getNormalizedRating() {
@@ -79,7 +75,7 @@ public class Fgk extends Player {
         this.pointsBps = pointsBps;
     }
 
-    public void calcPointsPerGameRating(List<Fgk> gks, Fgk currentGk, int weight) {
+    public void calcPointsPerGameRating(List<Fplayer> gks, Fplayer currentGk, int weight) {
 
         float max = gks.stream().max(Comparator.comparing(Player::getPoints_per_game)).get().getPoints_per_game();
         float min = gks.stream().min(Comparator.comparing(Player::getPoints_per_game)).get().getPoints_per_game();
@@ -94,7 +90,7 @@ public class Fgk extends Player {
         setNormalizedRating(getNormalizedRating() + pointsPointsPerGame);
     }
 
-    public void calcCleanSheetsRating(List<Fgk> gks, Fgk currentGk, int weight) {
+    public void calcCleanSheetsRating(List<Fplayer> gks, Fplayer currentGk, int weight) {
 
         int max = gks.stream().max(Comparator.comparing(Player::getClean_sheets)).get().getClean_sheets();
         int min = gks.stream().min(Comparator.comparing(Player::getClean_sheets)).get().getClean_sheets();
@@ -110,7 +106,7 @@ public class Fgk extends Player {
         setNormalizedRating(getNormalizedRating() + pointsCleanSheets);
     }
 
-    public void calcSavesRating(List<Fgk> gks, Fgk currentGk, int weight) {
+    public void calcSavesRating(List<Fplayer> gks, Fplayer currentGk, int weight) {
 
         int max = gks.stream().max(Comparator.comparing(Player::getSaves)).get().getSaves();
         int min = gks.stream().min(Comparator.comparing(Player::getSaves)).get().getSaves();
@@ -125,7 +121,7 @@ public class Fgk extends Player {
         setNormalizedRating(getNormalizedRating() + pointsSaves);
     }
 
-    public void calcBpsRating(List<Fgk> gks, Fgk currentGk, int weight) {
+    public void calcBpsRating(List<Fplayer> gks, Fplayer currentGk, int weight) {
 
         int max = gks.stream().max(Comparator.comparing(Player::getBps)).get().getBps();
         int min = gks.stream().min(Comparator.comparing(Player::getBps)).get().getBps();
@@ -141,10 +137,27 @@ public class Fgk extends Player {
         setNormalizedRating(getNormalizedRating() + pointsBps);
     }
 
-    //print GK
+    public void calcPenaltiesSavedRating(List<Fplayer> gks, Fplayer currentGk, int weight) {
+
+        int max = gks.stream().max(Comparator.comparing(Player::getPenalties_saved)).get().getPenalties_saved();
+        int min = gks.stream().min(Comparator.comparing(Player::getPenalties_saved)).get().getPenalties_saved();
+        int diff = max - min;
+
+        if (diff == 0) {
+            penaltiesSaved = 0;
+        } else {
+            penaltiesSaved = (currentGk.getBps() / diff * weight);
+        }
+
+        setPenaltiesSaved(penaltiesSaved);
+        setNormalizedRating(getNormalizedRating() + penaltiesSaved);
+    }
+
+    //print Fplayer
     @Override
     protected void printPlayer() {
-        System.out.println(String.format(this.getFirst_name() + " " + this.getSecond_name() + " [" + this.getTeam()
-                + "] " + this.getNow_cost() + " " + this.getTotal_points() + " " + this.getNormalizedRating()));
+        System.out.println(String.format(this.getFirst_name() + " " + this.getSecond_name()  + " " +
+                + this.getNow_cost()   + " " +  this.getNormalizedRating()  + " " +  this.getPointsBps() + " | "
+                + this.getPointsPointsPerGame() + " | " + this.getPointsSaves()  + " | " + this.getPointsCleanSheets()));
     }
 }
