@@ -65,12 +65,15 @@ public class Ffeplai {
 
         for (Fgk gk : fGks) {
             gk.calcPointsPerGameRating(fGks, gk, 10);
+            gk.calcCleanSheetsRating(fGks, gk, 10);
+            gk.calcSavesRating(fGks, gk, 10);
+            gk.calcBpsRating(fGks, gk, 10);
         }
 
         //selecting 5 gks
-        fGks = fGks.stream().sorted(Comparator.comparing(Fgk::getPointsPointsPerGame)
+        fGks = fGks.stream().sorted(Comparator.comparing(Fgk::getNormalizedRating)
                 .reversed())
-                .limit(5)
+                .limit(10)
                 .collect(toList());
 
         //print top 5 gks
