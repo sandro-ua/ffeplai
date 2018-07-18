@@ -13,6 +13,8 @@ public class Ffeplai {
         //Welcome!
         System.out.println("Welcome to ffeplai!" + System.lineSeparator());
 
+        long lStartTime = System.currentTimeMillis();
+
         //Get fresh data
         Data freshData = new Data();
         List<Player> players = null;
@@ -68,7 +70,8 @@ public class Ffeplai {
             gk.calcCleanSheetsRating(fGks, gk, 10);
             gk.calcSavesRating(fGks, gk, 10);
             gk.calcBpsRating(fGks, gk, 10);
-            gk.calcPenaltiesSavedRating(fGks, gk, 5);
+            gk.calcPenaltiesSavedRating(fGks, gk, 10);
+            gk.calcCreativityRating(fGks, gk, 10);
         }
 
         //selecting 5 gks
@@ -80,5 +83,9 @@ public class Ffeplai {
         for (Fplayer gk : fGks) {
             gk.printPlayer();
         }
+
+        long lEndTime = System.currentTimeMillis();
+        long output = lEndTime - lStartTime;
+        System.out.println(System.lineSeparator() + "Elapsed time in milliseconds: " + output);
     }
 }

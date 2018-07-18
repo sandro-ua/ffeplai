@@ -8,7 +8,9 @@ public class Fplayer extends Player {
     protected float pointsCleanSheets;
     protected float pointsSaves;
     protected float pointsBps;
-    protected float penaltiesSaved;
+    protected float pointsPenaltiesSaved;
+    protected float pointsCreativity;
+
 
     public Fplayer(Player pl) {
         super();
@@ -17,23 +19,17 @@ public class Fplayer extends Player {
         this.setSecond_name(pl.getSecond_name());
         this.setTeam(pl.getTeam());
         this.setTotal_points(pl.getTotal_points());
+        this.setCreativity(pl.getCreativity());
 
         //gk
         this.setPoints_per_game(pl.getPoints_per_game());
         this.setClean_sheets(pl.getClean_sheets());
         this.setSaves(pl.getSaves());
         this.setBps(pl.getBps());
-        this.setPenaltiesSaved(pl.getPenalties_saved());
+        this.setPenalties_saved(pl.getPenalties_saved());
 
     }
 
-    public float getPenaltiesSaved() {
-        return penaltiesSaved;
-    }
-
-    public void setPenaltiesSaved(float penaltiesSaved) {
-        this.penaltiesSaved = penaltiesSaved;
-    }
 
     public float getNormalizedRating() {
         return normalizedRating;
@@ -75,6 +71,23 @@ public class Fplayer extends Player {
         this.pointsBps = pointsBps;
     }
 
+    public float getPointsCreativity() {
+        return pointsCreativity;
+    }
+
+    public void setPointsCreativity(float pointsCreativity) {
+        this.pointsCreativity = pointsCreativity;
+    }
+
+    public float getPointsPenaltiesSaved() {
+        return pointsPenaltiesSaved;
+    }
+
+    public void setPointsPenaltiesSaved(float pointsPenaltiesSaved) {
+        this.pointsPenaltiesSaved = pointsPenaltiesSaved;
+    }
+
+
     public void calcPointsPerGameRating(List<Fplayer> gks, Fplayer currentGk, int weight) {
 
         float max = gks.stream().max(Comparator.comparing(Player::getPoints_per_game)).get().getPoints_per_game();
@@ -84,7 +97,7 @@ public class Fplayer extends Player {
         if (diff == 0) {
             pointsPointsPerGame = 0;
         } else {
-            pointsPointsPerGame = (currentGk.getPoints_per_game() / diff * weight);
+            pointsPointsPerGame = currentGk.getPoints_per_game() / diff * weight;
         }
         setPointsPointsPerGame(pointsPointsPerGame);
         setNormalizedRating(getNormalizedRating() + pointsPointsPerGame);
@@ -99,7 +112,7 @@ public class Fplayer extends Player {
         if (diff == 0) {
             pointsCleanSheets = 0;
         } else {
-            pointsCleanSheets = (currentGk.getClean_sheets() / diff * weight);
+            pointsCleanSheets = currentGk.getClean_sheets() / diff * weight;
         }
 
         setPointsCleanSheets(pointsCleanSheets);
@@ -115,7 +128,7 @@ public class Fplayer extends Player {
         if (diff == 0) {
             pointsSaves = 0;
         } else {
-            pointsSaves = (currentGk.getSaves() / diff * weight);
+            pointsSaves = currentGk.getSaves() / diff * weight;
         }
         setPointsSaves(pointsSaves);
         setNormalizedRating(getNormalizedRating() + pointsSaves);
@@ -130,7 +143,7 @@ public class Fplayer extends Player {
         if (diff == 0) {
             pointsBps = 0;
         } else {
-            pointsBps = (currentGk.getBps() / diff * weight);
+            pointsBps = currentGk.getBps() / diff * weight;
         }
 
         setPointsBps(pointsBps);
@@ -144,14 +157,31 @@ public class Fplayer extends Player {
         int diff = max - min;
 
         if (diff == 0) {
-            penaltiesSaved = 0;
+            pointsPenaltiesSaved = 0;
         } else {
-            penaltiesSaved = (currentGk.getBps() / diff * weight);
+            pointsPenaltiesSaved = currentGk.getPenalties_saved() / diff * weight;
         }
 
-        setPenaltiesSaved(penaltiesSaved);
-        setNormalizedRating(getNormalizedRating() + penaltiesSaved);
+        setPointsPenaltiesSaved(pointsPenaltiesSaved);
+        setNormalizedRating(getNormalizedRating() + pointsPenaltiesSaved);
     }
+
+    public void calcCreativityRating(List<Fplayer> gks, Fplayer currentGk, int weight) {
+
+        float max = gks.stream().max(Comparator.comparing(Player::getCreativity)).get().getCreativity();
+        float min = gks.stream().min(Comparator.comparing(Player::getCreativity)).get().getCreativity();
+        float diff = max - min;
+
+        if (diff == 0) {
+            pointsCreativity = 0;
+        } else {
+            pointsCreativity = currentGk.getCreativity() / diff * weight;
+        }
+
+        setPointsCreativity(pointsCreativity);
+        setNormalizedRating(getNormalizedRating() + pointsCreativity);
+    }
+
 
     //print Fplayer
     @Override
@@ -160,4 +190,11 @@ public class Fplayer extends Player {
                 + this.getNow_cost()   + " " +  this.getNormalizedRating()  + " " +  this.getPointsBps() + " | "
                 + this.getPointsPointsPerGame() + " | " + this.getPointsSaves()  + " | " + this.getPointsCleanSheets()));
     }
+
+    /*@Override
+    protected void printPlayer() {
+        System.out.println(String.format(this.getFirst_name() + " " + this.getSecond_name() + " C: " + this.getCreativity() + " R: " + this.getPointsCreativity()));
+    }*/
+
+
 }
