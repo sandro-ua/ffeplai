@@ -8,18 +8,22 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 public class Ffeplai {
-    public static void main(String[] args) throws MalformedURLException, SQLException {
+    public static void main(String[] args) throws IOException, SQLException {
+
+        long lStartTime = System.currentTimeMillis();
 
         //Welcome!
         System.out.println("Welcome to ffeplai!" + System.lineSeparator());
 
-        long lStartTime = System.currentTimeMillis();
-
         //Get fresh data
         Data freshData = new Data();
+
+        //update files from https://fantasy.premierleague.com/
+        freshData.updateLocalJsonFiles();
+
         List<Player> players = null;
         try {
-            players = freshData.getDataFromJson();
+            players = freshData.getPlayersDataFromJson();
         } catch (IOException e) {
             e.printStackTrace();
         }
