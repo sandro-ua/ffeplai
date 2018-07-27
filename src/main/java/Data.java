@@ -1,6 +1,5 @@
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.xml.internal.bind.v2.TODO;
 import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
@@ -24,11 +23,7 @@ public class Data {
     public List<Player> getPlayersDataFromJson() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 
-        List<Event> events = mapper.readValue(fileEvents, new TypeReference<List<Event>>() {
-        });
         List<Player> players = mapper.readValue(filePlayers, new TypeReference<List<Player>>() {
-        });
-        List<Team> teams = mapper.readValue(fileTeams, new TypeReference<List<Team>>() {
         });
 
         return players;

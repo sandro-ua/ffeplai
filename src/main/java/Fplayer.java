@@ -10,6 +10,7 @@ public class Fplayer extends Player {
     protected float pointsBps;
     protected float pointsPenaltiesSaved;
     protected float pointsCreativity;
+    protected float pointsIct_index;
 
 
     public Fplayer(Player pl) {
@@ -20,6 +21,7 @@ public class Fplayer extends Player {
         this.setTeam(pl.getTeam());
         this.setTotal_points(pl.getTotal_points());
         this.setCreativity(pl.getCreativity());
+        this.setIct_index(pl.getIct_index());
 
         //gk
         this.setPoints_per_game(pl.getPoints_per_game());
@@ -87,6 +89,13 @@ public class Fplayer extends Player {
         this.pointsPenaltiesSaved = pointsPenaltiesSaved;
     }
 
+    public float getPointsIct_index() {
+        return pointsIct_index;
+    }
+
+    public void setPointsIct_index(float pointsIct_index) {
+        this.pointsIct_index = pointsIct_index;
+    }
 
     public void calcPointsPerGameRating(List<Fplayer> gks, Fplayer currentGk, int weight) {
 
@@ -182,13 +191,28 @@ public class Fplayer extends Player {
         setNormalizedRating(getNormalizedRating() + pointsCreativity);
     }
 
+    public void calcIctIndexRating(List<Fplayer> gks, Fplayer currentPl, int weight) {
+
+        float max = gks.stream().max(Comparator.comparing(Player::getIct_index)).get().getIct_index();
+        float min = gks.stream().min(Comparator.comparing(Player::getIct_index)).get().getIct_index();
+        float diff = max - min;
+
+        if (diff == 0) {
+            pointsIct_index = 0;
+        } else {
+            pointsIct_index = currentPl.getIct_index() / diff * weight;
+        }
+
+        setIct_index(pointsIct_index);
+        setNormalizedRating(getNormalizedRating() + pointsIct_index);
+    }
+
 
     //print Fplayer
     @Override
     protected void printPlayer() {
         System.out.println(String.format(this.getFirst_name() + " " + this.getSecond_name()  + " " +
-                + this.getNow_cost()   + " " +  this.getNormalizedRating()  + " " +  this.getPointsBps() + " | "
-                + this.getPointsPointsPerGame() + " | " + this.getPointsSaves()  + " | " + this.getPointsCleanSheets()));
+                + this.getNow_cost()   + " " +  this.getNormalizedRating()));
     }
 
     /*@Override

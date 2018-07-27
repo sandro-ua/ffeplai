@@ -1,6 +1,6 @@
 public class Player {
 
-    private int id;
+    public static int id;
     private String photo;
     private String web_name;
     private int team_code;

@@ -6,42 +6,25 @@ import static java.util.stream.Collectors.toList;
 
 public class Fteam {
 
-    List<Player> allPlayers = new ArrayList<>();
-    List<Player> currentSquad = new ArrayList<>();
-    List<Player> startLineup = new ArrayList<>();
-    List<Player> subLineup = new ArrayList<>();
+    private List<Fplayer> allPlayers = new ArrayList<>();
+    private List<Fplayer> currentSquad = new ArrayList<>();
+    private List<Fplayer> startLineup = new ArrayList<>();
+    private List<Fplayer> subLineup = new ArrayList<>();
 
     int currentTotalPrice;
     int remainingBalance;
 
-    Player gk = new Player();
-    Player gkSub = new Player();
+    /*
+    ///////////////// This block of code is simple team selection. Based on several strict parameters.
+
+    //Fplayer gk = new Fplayer();
+    //Fplayer gkSub = new Fplayer();
     List<Player> df = new ArrayList<>();
     List<Player> md = new ArrayList<>();
     List<Player> fw = new ArrayList<>();
 
 
     //initial team selection
-
-    //select GK
-    /*
-    "now_cost": 50,
-    "chance_of_playing_this_round": null,
-    "value_form": "0.0",
-    "value_season": "0.0",
-    "form": "0.0",
-    "total_points": 124,
-    "event_points": 0,
-    "points_per_game": "3.6",
-    "clean_sheets": 11,
-    "penalties_saved": 1,
-    "saves": 90,
-    "bps": 627, https://www.premierleague.com/news/106533
-    "influence": "722.4",
-    "ict_index": "71.9",   https://www.premierleague.com/news/65567
-    */
-
-
 
     public List<Player> selectMainGk (List<Player> allPlayers, int resultQuantity, int maxCost) {
 
@@ -110,4 +93,19 @@ public class Fteam {
 
 
 
+*/
+
+
+    // Selecting team based on rating.
+
+    public List<Fplayer> selectMainGk (List<Fplayer> allPlayers, int resultQuantity, int maxCost) {
+
+        List<Fplayer> gks_only = allPlayers.stream()
+                .filter(p -> p.getElement_type() == 1)
+                .sorted(Comparator.comparing(Fplayer::getNormalizedRating).reversed())
+                .limit(resultQuantity)
+                .collect(toList());
+
+        return gks_only;
+    }
 }
