@@ -21,6 +21,7 @@ public class Fplayer extends Player {
         this.setIct_index(pl.getIct_index());
         this.setElement_type(pl.getElement_type());
 
+
         //gk
         this.setPoints_per_game(pl.getPoints_per_game());
         this.setClean_sheets(pl.getClean_sheets());

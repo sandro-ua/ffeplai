@@ -85,4 +85,5 @@ public class Fteam {
 
         currentTotalPrice = fTeam.currentSquad.stream().filter(o -> o.getNow_cost() > 0).mapToInt(Fplayer::getNow_cost).sum();
     }
+
 }

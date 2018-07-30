@@ -24,7 +24,6 @@ public class Ffeplai {
             e.printStackTrace();
         }
 
-        //FStats fStats = new FStats(players);
         FStats.calcStats(players);
 
         /*
@@ -66,7 +65,7 @@ public class Ffeplai {
         fTeam.currentSquad.addAll (fTeam.md);
         fTeam.currentSquad.addAll (fTeam.fw);
 
-        fTeam.recalcFteamValues(fTeam);
+        fTeam.reCalcFteamValues(fTeam);
 
         fTeam.currentTotalPrice = fTeam.currentSquad.stream().mapToInt(Player::getNow_cost).sum();
         fTeam.remainingBalance = 1000 - fTeam.currentTotalPrice;
