@@ -24,7 +24,8 @@ public class Ffeplai {
             e.printStackTrace();
         }
 
-        FStats fStats = new FStats(players);
+        //FStats fStats = new FStats(players);
+        FStats.calcStats(players);
 
         /*
         //connect to DB
@@ -32,37 +33,8 @@ public class Ffeplai {
         Connection conn = dbConnection.getConnection();
         */
 
-        /*
-
-        Fteam fTeam = new Fteam();
-        //main GK
-        fTeam.gk = fTeam.selectMainGk(players, 1, 999).get(0);
-        //sub GK
-        fTeam.gkSub = fTeam.selectSubGk(players, 1, 45).get(0);
-        fTeam.df = fTeam.selectDfs (players, 5, 65);
-        fTeam.md = fTeam.selectMds (players, 5, 90);
-        fTeam.fw = fTeam.selectFws (players, 3, 90);
-
-        fTeam.currentSquad.add (fTeam.gk);
-        fTeam.currentSquad.add (fTeam.gkSub);
-        fTeam.currentSquad.addAll (fTeam.df);
-        fTeam.currentSquad.addAll (fTeam.md);
-        fTeam.currentSquad.addAll (fTeam.fw);
-
-        fTeam.currentTotalPrice = fTeam.currentSquad.stream().mapToInt(Player::getNow_cost).sum();
-        fTeam.remainingBalance = 1000 - fTeam.currentTotalPrice;
-
-        fTeam.printFteam(fTeam);
-
-        System.out.println(System.lineSeparator() + "Total price: " + fTeam.currentTotalPrice);
-        System.out.println("Remaining Balance: " + fTeam.remainingBalance + System.lineSeparator());
-
-        */
 
         //working with normalized rating
-        //Player pl = new Player();
-        //Fplayer fPlayer = new Fplayer(pl);
-
         List<Fplayer> allFplayers = new ArrayList<>();
 
         for (Player pl : players) {
@@ -79,21 +51,35 @@ public class Ffeplai {
             pl.calcIctIndexRating(pl, 10);
         }
 
-
-
         Fteam fTeam = new Fteam();
-        List<Fplayer> bestGkRating = fTeam.selectMainGk(allFplayers, 5, 999);
 
-        //print top 5 gks
-        for (Fplayer gk : bestGkRating) {
-            gk.printPlayer();
-        }
+        //main GK
+        fTeam.gk.add(fTeam.selectMainGk(allFplayers, 1, 999).get(0));
+        //sub GK
+        fTeam.gk.add(fTeam.selectSubGk(allFplayers, 1, 500).get(0));
+        fTeam.df = fTeam.selectDfs (allFplayers, 5, 65);
+        fTeam.md = fTeam.selectMds (allFplayers, 5, 90);
+        fTeam.fw = fTeam.selectFws (allFplayers, 3, 90);
+
+        fTeam.currentSquad.addAll (fTeam.gk);
+        fTeam.currentSquad.addAll (fTeam.df);
+        fTeam.currentSquad.addAll (fTeam.md);
+        fTeam.currentSquad.addAll (fTeam.fw);
+
+        fTeam.recalcFteamValues(fTeam);
+
+        fTeam.currentTotalPrice = fTeam.currentSquad.stream().mapToInt(Player::getNow_cost).sum();
+        fTeam.remainingBalance = 1000 - fTeam.currentTotalPrice;
+
+        fTeam.printFteam(fTeam);
+
+        System.out.println(System.lineSeparator() + "Total price: " + fTeam.currentTotalPrice);
+        System.out.println("Remaining Balance: " + fTeam.remainingBalance + System.lineSeparator());
+
 
         long lEndTime = System.currentTimeMillis();
         long output = lEndTime - lStartTime;
         System.out.println(System.lineSeparator() + "Elapsed time in milliseconds: " + output);
-
-
 
     }
 

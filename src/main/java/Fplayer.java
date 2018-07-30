@@ -1,8 +1,3 @@
-import com.sun.org.apache.bcel.internal.generic.FSTORE;
-
-import java.util.Comparator;
-import java.util.List;
-
 public class Fplayer extends Player {
 
     private float normalizedRating;
@@ -15,7 +10,7 @@ public class Fplayer extends Player {
     private float pointsIct_index;
 
 
-    public Fplayer(Player pl) {
+    Fplayer(Player pl) {
         super();
         this.setNow_cost(pl.getNow_cost());
         this.setFirst_name(pl.getFirst_name());
@@ -24,6 +19,7 @@ public class Fplayer extends Player {
         this.setTotal_points(pl.getTotal_points());
         this.setCreativity(pl.getCreativity());
         this.setIct_index(pl.getIct_index());
+        this.setElement_type(pl.getElement_type());
 
         //gk
         this.setPoints_per_game(pl.getPoints_per_game());
@@ -34,72 +30,74 @@ public class Fplayer extends Player {
 
     }
 
+    // Getters and Setters
 
-    public float getNormalizedRating() {
+    protected float getNormalizedRating() {
         return normalizedRating;
     }
 
-    public void setNormalizedRating(float normalizedRating) {
+    protected void setNormalizedRating(float normalizedRating) {
         this.normalizedRating = normalizedRating;
     }
 
-    public float getPointsCleanSheets() {
+    protected float getPointsCleanSheets() {
         return pointsCleanSheets;
     }
 
-    public void setPointsCleanSheets(float pointsCleanSheets) {
+    protected void setPointsCleanSheets(float pointsCleanSheets) {
         this.pointsCleanSheets = pointsCleanSheets;
     }
 
-    public float getPointsPointsPerGame() {
+    protected float getPointsPointsPerGame() {
         return pointsPointsPerGame;
     }
 
-    public void setPointsPointsPerGame(float pointsPointsPerGame) {
+    protected void setPointsPointsPerGame(float pointsPointsPerGame) {
         this.pointsPointsPerGame = pointsPointsPerGame;
     }
 
-    public float getPointsSaves() {
+    protected float getPointsSaves() {
         return pointsSaves;
     }
 
-    public void setPointsSaves(float pointsSaves) {
+    protected void setPointsSaves(float pointsSaves) {
         this.pointsSaves = pointsSaves;
     }
 
-    public float getPointsBps() {
+    protected float getPointsBps() {
         return pointsBps;
     }
 
-    public void setPointsBps(float pointsBps) {
+    protected void setPointsBps(float pointsBps) {
         this.pointsBps = pointsBps;
     }
 
-    public float getPointsCreativity() {
+    protected float getPointsCreativity() {
         return pointsCreativity;
     }
 
-    public void setPointsCreativity(float pointsCreativity) {
+    protected void setPointsCreativity(float pointsCreativity) {
         this.pointsCreativity = pointsCreativity;
     }
 
-    public float getPointsPenaltiesSaved() {
+    protected float getPointsPenaltiesSaved() {
         return pointsPenaltiesSaved;
     }
 
-    public void setPointsPenaltiesSaved(float pointsPenaltiesSaved) {
+    protected void setPointsPenaltiesSaved(float pointsPenaltiesSaved) {
         this.pointsPenaltiesSaved = pointsPenaltiesSaved;
     }
 
-    public float getPointsIct_index() {
+    protected float getPointsIct_index() {
         return pointsIct_index;
     }
 
-    public void setPointsIct_index(float pointsIct_index) {
+    protected void setPointsIct_index(float pointsIct_index) {
         this.pointsIct_index = pointsIct_index;
     }
 
-    public void calcPointsPerGameRating(Fplayer currentGk, int weight) {
+
+    void calcPointsPerGameRating(Fplayer currentGk, int weight) {
 
         if (FStats.pointsPerGameStats.diff == 0) {
             pointsPointsPerGame = 0;
@@ -110,7 +108,7 @@ public class Fplayer extends Player {
         setNormalizedRating(getNormalizedRating() + pointsPointsPerGame);
     }
 
-    public void calcCleanSheetsRating(Fplayer currentGk, int weight) {
+    void calcCleanSheetsRating(Fplayer currentGk, int weight) {
 
         if (FStats.cleanSheetsStats.diff == 0) {
             pointsCleanSheets = 0;
@@ -122,7 +120,7 @@ public class Fplayer extends Player {
         setNormalizedRating(getNormalizedRating() + pointsCleanSheets);
     }
 
-    public void calcSavesRating(Fplayer currentGk, int weight) {
+    void calcSavesRating(Fplayer currentGk, int weight) {
 
         if (FStats.savesStats.diff == 0) {
             pointsSaves = 0;
@@ -133,7 +131,7 @@ public class Fplayer extends Player {
         setNormalizedRating(getNormalizedRating() + pointsSaves);
     }
 
-    public void calcBpsRating(Fplayer currentGk, int weight) {
+    void calcBpsRating(Fplayer currentGk, int weight) {
 
         if (FStats.bpsStats.diff == 0) {
             pointsBps = 0;
@@ -145,7 +143,7 @@ public class Fplayer extends Player {
         setNormalizedRating(getNormalizedRating() + pointsBps);
     }
 
-    public void calcPenaltiesSavedRating(Fplayer currentGk, int weight) {
+    void calcPenaltiesSavedRating(Fplayer currentGk, int weight) {
 
         if (FStats.penaltiesSavedStats.diff == 0) {
             pointsPenaltiesSaved = 0;
@@ -157,7 +155,7 @@ public class Fplayer extends Player {
         setNormalizedRating(getNormalizedRating() + pointsPenaltiesSaved);
     }
 
-    public void calcCreativityRating(Fplayer currentGk, int weight) {
+    void calcCreativityRating(Fplayer currentGk, int weight) {
 
         if (FStats.creativityStats.diff == 0) {
             pointsCreativity = 0;
@@ -169,7 +167,7 @@ public class Fplayer extends Player {
         setNormalizedRating(getNormalizedRating() + pointsCreativity);
     }
 
-    public void calcIctIndexRating(Fplayer currentPl, int weight) {
+    void calcIctIndexRating(Fplayer currentPl, int weight) {
 
         if (FStats.ictIndexRatingStats.diff == 0) {
             pointsIct_index = 0;
@@ -185,14 +183,13 @@ public class Fplayer extends Player {
     //print Fplayer
     @Override
     protected void printPlayer() {
-        System.out.println(String.format(this.getFirst_name() + " " + this.getSecond_name()  + " " +
-                + this.getNow_cost()   + " " +  this.getNormalizedRating()));
+        System.out.println(String.format(this.getFirst_name() + " " + this.getSecond_name() + " " +
+                +this.getNow_cost() + " " + this.getNormalizedRating()));
     }
 
     /*@Override
     protected void printPlayer() {
         System.out.println(String.format(this.getFirst_name() + " " + this.getSecond_name() + " C: " + this.getCreativity() + " R: " + this.getPointsCreativity()));
     }*/
-
 
 }
