@@ -1,10 +1,7 @@
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-
-import static java.util.stream.Collectors.toList;
 
 public class Ffeplai {
     public static void main(String[] args) throws IOException, SQLException {
@@ -26,6 +23,8 @@ public class Ffeplai {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        FStats fStats = new FStats(players);
 
         /*
         //connect to DB
@@ -71,13 +70,13 @@ public class Ffeplai {
         }
 
         for (Fplayer pl : allFplayers) {
-            pl.calcPointsPerGameRating(allFplayers, pl, 10);
-            pl.calcCleanSheetsRating(allFplayers, pl, 10);
-            pl.calcSavesRating(allFplayers, pl, 10);
-            pl.calcBpsRating(allFplayers, pl, 10);
-            pl.calcPenaltiesSavedRating(allFplayers, pl, 10);
-            pl.calcCreativityRating(allFplayers, pl, 10);
-            pl.calcIctIndexRating(allFplayers, pl, 10);
+            pl.calcPointsPerGameRating(pl, 10);
+            pl.calcCleanSheetsRating(pl, 10);
+            pl.calcSavesRating(pl, 10);
+            pl.calcBpsRating(pl, 10);
+            pl.calcPenaltiesSavedRating(pl, 10);
+            pl.calcCreativityRating(pl, 10);
+            pl.calcIctIndexRating(pl, 10);
         }
 
 
@@ -94,7 +93,7 @@ public class Ffeplai {
         long output = lEndTime - lStartTime;
         System.out.println(System.lineSeparator() + "Elapsed time in milliseconds: " + output);
 
-        Fstats.calcMinMax(players);
+
 
     }
 

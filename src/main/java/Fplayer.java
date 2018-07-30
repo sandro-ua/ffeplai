@@ -1,16 +1,18 @@
+import com.sun.org.apache.bcel.internal.generic.FSTORE;
+
 import java.util.Comparator;
 import java.util.List;
 
 public class Fplayer extends Player {
 
-    protected float normalizedRating;
-    protected float pointsPointsPerGame;
-    protected float pointsCleanSheets;
-    protected float pointsSaves;
-    protected float pointsBps;
-    protected float pointsPenaltiesSaved;
-    protected float pointsCreativity;
-    protected float pointsIct_index;
+    private float normalizedRating;
+    private float pointsPointsPerGame;
+    private float pointsCleanSheets;
+    private float pointsSaves;
+    private float pointsBps;
+    private float pointsPenaltiesSaved;
+    private float pointsCreativity;
+    private float pointsIct_index;
 
 
     public Fplayer(Player pl) {
@@ -97,110 +99,82 @@ public class Fplayer extends Player {
         this.pointsIct_index = pointsIct_index;
     }
 
-    public void calcPointsPerGameRating(List<Fplayer> gks, Fplayer currentGk, int weight) {
+    public void calcPointsPerGameRating(Fplayer currentGk, int weight) {
 
-        float max = gks.stream().max(Comparator.comparing(Player::getPoints_per_game)).get().getPoints_per_game();
-        float min = gks.stream().min(Comparator.comparing(Player::getPoints_per_game)).get().getPoints_per_game();
-        float diff = max - min;
-
-        if (diff == 0) {
+        if (FStats.pointsPerGameStats.diff == 0) {
             pointsPointsPerGame = 0;
         } else {
-            pointsPointsPerGame = currentGk.getPoints_per_game() / diff * weight;
+            pointsPointsPerGame = currentGk.getPoints_per_game() / FStats.pointsPerGameStats.diff * weight;
         }
         setPointsPointsPerGame(pointsPointsPerGame);
         setNormalizedRating(getNormalizedRating() + pointsPointsPerGame);
     }
 
-    public void calcCleanSheetsRating(List<Fplayer> gks, Fplayer currentGk, int weight) {
+    public void calcCleanSheetsRating(Fplayer currentGk, int weight) {
 
-        int max = gks.stream().max(Comparator.comparing(Player::getClean_sheets)).get().getClean_sheets();
-        int min = gks.stream().min(Comparator.comparing(Player::getClean_sheets)).get().getClean_sheets();
-        int diff = max - min;
-
-        if (diff == 0) {
+        if (FStats.cleanSheetsStats.diff == 0) {
             pointsCleanSheets = 0;
         } else {
-            pointsCleanSheets = currentGk.getClean_sheets() / diff * weight;
+            pointsCleanSheets = currentGk.getClean_sheets() / FStats.cleanSheetsStats.diff * weight;
         }
 
         setPointsCleanSheets(pointsCleanSheets);
         setNormalizedRating(getNormalizedRating() + pointsCleanSheets);
     }
 
-    public void calcSavesRating(List<Fplayer> gks, Fplayer currentGk, int weight) {
+    public void calcSavesRating(Fplayer currentGk, int weight) {
 
-        int max = gks.stream().max(Comparator.comparing(Player::getSaves)).get().getSaves();
-        int min = gks.stream().min(Comparator.comparing(Player::getSaves)).get().getSaves();
-        int diff = max - min;
-
-        if (diff == 0) {
+        if (FStats.savesStats.diff == 0) {
             pointsSaves = 0;
         } else {
-            pointsSaves = currentGk.getSaves() / diff * weight;
+            pointsSaves = currentGk.getSaves() / FStats.savesStats.diff * weight;
         }
         setPointsSaves(pointsSaves);
         setNormalizedRating(getNormalizedRating() + pointsSaves);
     }
 
-    public void calcBpsRating(List<Fplayer> gks, Fplayer currentGk, int weight) {
+    public void calcBpsRating(Fplayer currentGk, int weight) {
 
-        int max = gks.stream().max(Comparator.comparing(Player::getBps)).get().getBps();
-        int min = gks.stream().min(Comparator.comparing(Player::getBps)).get().getBps();
-        int diff = max - min;
-
-        if (diff == 0) {
+        if (FStats.bpsStats.diff == 0) {
             pointsBps = 0;
         } else {
-            pointsBps = currentGk.getBps() / diff * weight;
+            pointsBps = currentGk.getBps() / FStats.bpsStats.diff * weight;
         }
 
         setPointsBps(pointsBps);
         setNormalizedRating(getNormalizedRating() + pointsBps);
     }
 
-    public void calcPenaltiesSavedRating(List<Fplayer> gks, Fplayer currentGk, int weight) {
+    public void calcPenaltiesSavedRating(Fplayer currentGk, int weight) {
 
-        int max = gks.stream().max(Comparator.comparing(Player::getPenalties_saved)).get().getPenalties_saved();
-        int min = gks.stream().min(Comparator.comparing(Player::getPenalties_saved)).get().getPenalties_saved();
-        int diff = max - min;
-
-        if (diff == 0) {
+        if (FStats.penaltiesSavedStats.diff == 0) {
             pointsPenaltiesSaved = 0;
         } else {
-            pointsPenaltiesSaved = currentGk.getPenalties_saved() / diff * weight;
+            pointsPenaltiesSaved = currentGk.getPenalties_saved() / FStats.penaltiesSavedStats.diff * weight;
         }
 
         setPointsPenaltiesSaved(pointsPenaltiesSaved);
         setNormalizedRating(getNormalizedRating() + pointsPenaltiesSaved);
     }
 
-    public void calcCreativityRating(List<Fplayer> gks, Fplayer currentGk, int weight) {
+    public void calcCreativityRating(Fplayer currentGk, int weight) {
 
-        float max = gks.stream().max(Comparator.comparing(Player::getCreativity)).get().getCreativity();
-        float min = gks.stream().min(Comparator.comparing(Player::getCreativity)).get().getCreativity();
-        float diff = max - min;
-
-        if (diff == 0) {
+        if (FStats.creativityStats.diff == 0) {
             pointsCreativity = 0;
         } else {
-            pointsCreativity = currentGk.getCreativity() / diff * weight;
+            pointsCreativity = currentGk.getCreativity() / FStats.creativityStats.diff * weight;
         }
 
         setPointsCreativity(pointsCreativity);
         setNormalizedRating(getNormalizedRating() + pointsCreativity);
     }
 
-    public void calcIctIndexRating(List<Fplayer> gks, Fplayer currentPl, int weight) {
+    public void calcIctIndexRating(Fplayer currentPl, int weight) {
 
-        float max = gks.stream().max(Comparator.comparing(Player::getIct_index)).get().getIct_index();
-        float min = gks.stream().min(Comparator.comparing(Player::getIct_index)).get().getIct_index();
-        float diff = max - min;
-
-        if (diff == 0) {
+        if (FStats.ictIndexRatingStats.diff == 0) {
             pointsIct_index = 0;
         } else {
-            pointsIct_index = currentPl.getIct_index() / diff * weight;
+            pointsIct_index = currentPl.getIct_index() / FStats.ictIndexRatingStats.diff * weight;
         }
 
         setIct_index(pointsIct_index);
