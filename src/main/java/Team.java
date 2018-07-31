@@ -19,7 +19,7 @@ public class Team {
     private float loss;
     private float draw;
     private float points;
-    private String form = null;
+    private boolean form;
     private String link_url;
     private float strength_overall_home;
     private float strength_overall_away;
@@ -130,11 +130,11 @@ public class Team {
         this.points = points;
     }
 
-    public String getForm() {
+    public boolean getForm() {
         return form;
     }
 
-    public void setForm(String form) {
+    public void setForm(boolean form) {
         this.form = form;
     }
 

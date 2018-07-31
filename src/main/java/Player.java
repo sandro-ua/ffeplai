@@ -12,8 +12,8 @@ public class Player {
     private String news;
     private int now_cost;
     private String news_added = null;
-    private String chance_of_playing_this_round = null;
-    private String chance_of_playing_next_round = null;
+    private boolean chance_of_playing_this_round;
+    private boolean chance_of_playing_next_round;
     private String value_form;
     private String value_season;
     private int cost_change_start;
@@ -158,19 +158,19 @@ public class Player {
         this.news_added = news_added;
     }
 
-    public String getChance_of_playing_this_round() {
+    public boolean getChance_of_playing_this_round() {
         return chance_of_playing_this_round;
     }
 
-    public void setChance_of_playing_this_round(String chance_of_playing_this_round) {
+    public void setChance_of_playing_this_round(boolean chance_of_playing_this_round) {
         this.chance_of_playing_this_round = chance_of_playing_this_round;
     }
 
-    public String getChance_of_playing_next_round() {
+    public boolean getChance_of_playing_next_round() {
         return chance_of_playing_next_round;
     }
 
-    public void setChance_of_playing_next_round(String chance_of_playing_next_round) {
+    public void setChance_of_playing_next_round(boolean chance_of_playing_next_round) {
         this.chance_of_playing_next_round = chance_of_playing_next_round;
     }
 

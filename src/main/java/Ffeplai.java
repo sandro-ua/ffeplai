@@ -24,7 +24,14 @@ public class Ffeplai {
             e.printStackTrace();
         }
 
-        FStats.calcStats(players);
+        List<Team> teams = null;
+        try {
+            teams = freshData.getTeamsDataFromJson();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        Fstats.calcStats(players);
 
         /*
         //connect to DB
@@ -37,7 +44,7 @@ public class Ffeplai {
         List<Fplayer> allFplayers = new ArrayList<>();
 
         for (Player pl : players) {
-                allFplayers.add((new Fplayer(pl)));
+            allFplayers.add((new Fplayer(pl)));
         }
 
         for (Fplayer pl : allFplayers) {
@@ -56,14 +63,14 @@ public class Ffeplai {
         fTeam.gk.add(fTeam.selectMainGk(allFplayers, 1, 999).get(0));
         //sub GK
         fTeam.gk.add(fTeam.selectSubGk(allFplayers, 1, 500).get(0));
-        fTeam.df = fTeam.selectDfs (allFplayers, 5, 65);
-        fTeam.md = fTeam.selectMds (allFplayers, 5, 90);
-        fTeam.fw = fTeam.selectFws (allFplayers, 3, 90);
+        fTeam.df = fTeam.selectDfs(allFplayers, 5, 65);
+        fTeam.md = fTeam.selectMds(allFplayers, 5, 90);
+        fTeam.fw = fTeam.selectFws(allFplayers, 3, 90);
 
-        fTeam.currentSquad.addAll (fTeam.gk);
-        fTeam.currentSquad.addAll (fTeam.df);
-        fTeam.currentSquad.addAll (fTeam.md);
-        fTeam.currentSquad.addAll (fTeam.fw);
+        fTeam.currentSquad.addAll(fTeam.gk);
+        fTeam.currentSquad.addAll(fTeam.df);
+        fTeam.currentSquad.addAll(fTeam.md);
+        fTeam.currentSquad.addAll(fTeam.fw);
 
         fTeam.reCalcFteamValues(fTeam);
 
@@ -79,8 +86,5 @@ public class Ffeplai {
         long lEndTime = System.currentTimeMillis();
         long output = lEndTime - lStartTime;
         System.out.println(System.lineSeparator() + "Elapsed time in milliseconds: " + output);
-
     }
-
-
 }

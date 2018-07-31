@@ -5,7 +5,7 @@ import java.util.List;
  * Collects statics about players stats (max, min values, etc.).
  * This is for not recalculating it each time when normalized rating is needed.
  */
-class FStats {
+class Fstats {
 
     public static Stats ictIndexRatingStats;
     public static Stats creativityStats;

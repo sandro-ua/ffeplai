@@ -100,10 +100,10 @@ public class Fplayer extends Player {
 
     void calcPointsPerGameRating(Fplayer currentGk, int weight) {
 
-        if (FStats.pointsPerGameStats.diff == 0) {
+        if (Fstats.pointsPerGameStats.diff == 0) {
             pointsPointsPerGame = 0;
         } else {
-            pointsPointsPerGame = currentGk.getPoints_per_game() / FStats.pointsPerGameStats.diff * weight;
+            pointsPointsPerGame = currentGk.getPoints_per_game() / Fstats.pointsPerGameStats.diff * weight;
         }
         setPointsPointsPerGame(pointsPointsPerGame);
         setNormalizedRating(getNormalizedRating() + pointsPointsPerGame);
@@ -111,10 +111,10 @@ public class Fplayer extends Player {
 
     void calcCleanSheetsRating(Fplayer currentGk, int weight) {
 
-        if (FStats.cleanSheetsStats.diff == 0) {
+        if (Fstats.cleanSheetsStats.diff == 0) {
             pointsCleanSheets = 0;
         } else {
-            pointsCleanSheets = currentGk.getClean_sheets() / FStats.cleanSheetsStats.diff * weight;
+            pointsCleanSheets = currentGk.getClean_sheets() / Fstats.cleanSheetsStats.diff * weight;
         }
 
         setPointsCleanSheets(pointsCleanSheets);
@@ -123,10 +123,10 @@ public class Fplayer extends Player {
 
     void calcSavesRating(Fplayer currentGk, int weight) {
 
-        if (FStats.savesStats.diff == 0) {
+        if (Fstats.savesStats.diff == 0) {
             pointsSaves = 0;
         } else {
-            pointsSaves = currentGk.getSaves() / FStats.savesStats.diff * weight;
+            pointsSaves = currentGk.getSaves() / Fstats.savesStats.diff * weight;
         }
         setPointsSaves(pointsSaves);
         setNormalizedRating(getNormalizedRating() + pointsSaves);
@@ -134,10 +134,10 @@ public class Fplayer extends Player {
 
     void calcBpsRating(Fplayer currentGk, int weight) {
 
-        if (FStats.bpsStats.diff == 0) {
+        if (Fstats.bpsStats.diff == 0) {
             pointsBps = 0;
         } else {
-            pointsBps = currentGk.getBps() / FStats.bpsStats.diff * weight;
+            pointsBps = currentGk.getBps() / Fstats.bpsStats.diff * weight;
         }
 
         setPointsBps(pointsBps);
@@ -146,10 +146,10 @@ public class Fplayer extends Player {
 
     void calcPenaltiesSavedRating(Fplayer currentGk, int weight) {
 
-        if (FStats.penaltiesSavedStats.diff == 0) {
+        if (Fstats.penaltiesSavedStats.diff == 0) {
             pointsPenaltiesSaved = 0;
         } else {
-            pointsPenaltiesSaved = currentGk.getPenalties_saved() / FStats.penaltiesSavedStats.diff * weight;
+            pointsPenaltiesSaved = currentGk.getPenalties_saved() / Fstats.penaltiesSavedStats.diff * weight;
         }
 
         setPointsPenaltiesSaved(pointsPenaltiesSaved);
@@ -158,10 +158,10 @@ public class Fplayer extends Player {
 
     void calcCreativityRating(Fplayer currentGk, int weight) {
 
-        if (FStats.creativityStats.diff == 0) {
+        if (Fstats.creativityStats.diff == 0) {
             pointsCreativity = 0;
         } else {
-            pointsCreativity = currentGk.getCreativity() / FStats.creativityStats.diff * weight;
+            pointsCreativity = currentGk.getCreativity() / Fstats.creativityStats.diff * weight;
         }
 
         setPointsCreativity(pointsCreativity);
@@ -170,10 +170,10 @@ public class Fplayer extends Player {
 
     void calcIctIndexRating(Fplayer currentPl, int weight) {
 
-        if (FStats.ictIndexRatingStats.diff == 0) {
+        if (Fstats.ictIndexRatingStats.diff == 0) {
             pointsIct_index = 0;
         } else {
-            pointsIct_index = currentPl.getIct_index() / FStats.ictIndexRatingStats.diff * weight;
+            pointsIct_index = currentPl.getIct_index() / Fstats.ictIndexRatingStats.diff * weight;
         }
 
         setIct_index(pointsIct_index);
