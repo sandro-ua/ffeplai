@@ -86,4 +86,44 @@ public class Fteam {
         currentTotalPrice = fTeam.currentSquad.stream().filter(o -> o.getNow_cost() > 0).mapToInt(Fplayer::getNow_cost).sum();
     }
 
+    private Fplayer selectPlayerToTransferOut (Fteam fteam) {
+        Fplayer playerOut = null;
+        return playerOut;
+    }
+
+
+    
+    private Fplayer selectPlayerToTransferIn (List <Fplayer> allPlayers) {
+        Fplayer playerIn = null;
+        return playerIn;
+    }
+
+    private Fteam makeTransfer (Fteam fteam, Fplayer outPlayer, Fplayer inPlayer) {
+        fteam.currentSquad.remove(outPlayer);
+        fteam.currentSquad.remove(inPlayer);
+        if (outPlayer.getElement_type() == inPlayer.getElement_type()) {
+            switch (outPlayer.getElement_type()) {
+                case 1:
+                    fteam.gk.remove(outPlayer);
+                    fteam.gk.add(inPlayer);
+                case 2:
+                    fteam.df.remove(outPlayer);
+                    fteam.df.add(inPlayer);
+                case 3:
+                    fteam.md.remove(outPlayer);
+                    fteam.md.add(inPlayer);
+                case 4:
+                    fteam.fw.remove(outPlayer);
+                    fteam.fw.add(inPlayer);
+            }
+            reCalcFteamValues(fteam);
+        }
+            else {
+            System.out.println("Transfer can't be done. Positions do not match.");
+        }
+
+
+        return fteam;
+    }
+
 }
