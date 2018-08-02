@@ -3,6 +3,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Ffeplai {
     public static void main(String[] args) throws IOException, SQLException {
 
@@ -24,9 +25,9 @@ public class Ffeplai {
             e.printStackTrace();
         }
 
-        List<Team> teams = null;
+        List<Club> clubs = null;
         try {
-            teams = freshData.getTeamsDataFromJson();
+            clubs = freshData.getTeamsDataFromJson();
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -63,9 +64,9 @@ public class Ffeplai {
         fTeam.gk.add(fTeam.selectMainGk(allFplayers, 1, 999).get(0));
         //sub GK
         fTeam.gk.add(fTeam.selectSubGk(allFplayers, 1, 500).get(0));
-        fTeam.df = fTeam.selectDfs(allFplayers, 5, 65);
-        fTeam.md = fTeam.selectMds(allFplayers, 5, 90);
-        fTeam.fw = fTeam.selectFws(allFplayers, 3, 90);
+        fTeam.df = fTeam.selectDfs(allFplayers, 5, 650);
+        fTeam.md = fTeam.selectMds(allFplayers, 5, 900);
+        fTeam.fw = fTeam.selectFws(allFplayers, 3, 900);
 
         fTeam.currentSquad.addAll(fTeam.gk);
         fTeam.currentSquad.addAll(fTeam.df);
@@ -79,8 +80,15 @@ public class Ffeplai {
 
         fTeam.printFteam(fTeam);
 
+
+
+
         System.out.println(System.lineSeparator() + "Total price: " + fTeam.currentTotalPrice);
         System.out.println("Remaining Balance: " + fTeam.remainingBalance + System.lineSeparator());
+
+
+        System.out.println(System.lineSeparator() + "Potential transfers: " + System.lineSeparator());
+        Fplayer.printPlayers(fTeam.selectPotentialPlayersForTransferIn(allFplayers, fTeam));
 
 
         long lEndTime = System.currentTimeMillis();

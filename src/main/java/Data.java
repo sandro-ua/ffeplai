@@ -1,7 +1,7 @@
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -30,10 +30,10 @@ public class Data {
         return players;
     }
 
-    public List<Team> getTeamsDataFromJson() throws IOException {
+    public List<Club> getTeamsDataFromJson() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 
-        List<Team> teams = mapper.readValue(fileTeams, new TypeReference<List<Team>>() {
+        List<Club> teams = mapper.readValue(fileTeams, new TypeReference<List<Club>>() {
         });
 
         return teams;
@@ -42,7 +42,7 @@ public class Data {
     public List<Event> getEventsDataFromJson() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 
-        List<Event> events = mapper.readValue(fileTeams, new TypeReference<List<Team>>() {
+        List<Event> events = mapper.readValue(fileTeams, new TypeReference<List<Club>>() {
         });
 
         return events;

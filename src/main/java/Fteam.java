@@ -20,26 +20,27 @@ public class Fteam {
 
     public List<Fplayer> selectMainGk (List<Fplayer> allPlayers, int resultQuantity, int maxCost) {
 
-        List<Fplayer> gks_only = allPlayers.stream()
+        List<Fplayer> main_gk = allPlayers.stream()
                 .filter(p -> p.getElement_type() == 1)
                 .filter(p -> p.getNow_cost() < maxCost)
                 .sorted(Comparator.comparing(Fplayer::getNormalizedRating).reversed())
                 .limit(resultQuantity)
                 .collect(toList());
 
-        return gks_only;
+        return main_gk;
     }
 
     public List<Fplayer> selectSubGk (List<Fplayer> allPlayers, int resultQuantity, int maxCost) {
 
-        List<Fplayer> gks_only = allPlayers.stream()
+        List<Fplayer> sub_gk = allPlayers.stream()
                 .filter(p -> p.getElement_type() == 1)
                 .filter(p -> p.getNow_cost() < maxCost)
                 .sorted(Comparator.comparing(Fplayer::getNormalizedRating).reversed())
+                .filter(x -> !gk.contains(x))
                 .limit(resultQuantity)
                 .collect(toList());
 
-        return gks_only;
+        return sub_gk;
     }
 
     public List<Fplayer> selectDfs (List<Fplayer> allPlayers, int resultQuantity, int maxCost) {
@@ -83,7 +84,10 @@ public class Fteam {
 
     protected void reCalcFteamValues(Fteam fTeam) {
 
-        currentTotalPrice = fTeam.currentSquad.stream().filter(o -> o.getNow_cost() > 0).mapToInt(Fplayer::getNow_cost).sum();
+        currentTotalPrice = fTeam.currentSquad.stream()
+                .filter(o -> o.getNow_cost() > 0)
+                .mapToInt(Fplayer::getNow_cost)
+                .sum();
     }
 
     private Fplayer selectPlayerToTransferOut (Fteam fteam) {
@@ -92,10 +96,23 @@ public class Fteam {
     }
 
 
-    
+
     private Fplayer selectPlayerToTransferIn (List <Fplayer> allPlayers) {
         Fplayer playerIn = null;
         return playerIn;
+    }
+
+    public List<Fplayer> selectPotentialPlayersForTransferIn (List<Fplayer> allPlayers, Fteam fTeam) {
+        List<Fplayer> potTransferIn = allPlayers.stream()
+                //.filter(o -> o.getChance_of_playing_this_round() != 0) values not set yet
+                //.filter(o -> o.getChance_of_playing_next_round() != 0) values not set yet
+                .filter(o -> o.getSelected_by_percent() > 0.5)
+                .sorted(Comparator.comparing(Fplayer::getNormalizedRating).reversed())
+                .filter(x -> !fTeam.currentSquad.contains(x))
+                .limit(20)
+                .collect(toList());
+
+        return potTransferIn;
     }
 
     private Fteam makeTransfer (Fteam fteam, Fplayer outPlayer, Fplayer inPlayer) {
@@ -121,7 +138,6 @@ public class Fteam {
             else {
             System.out.println("Transfer can't be done. Positions do not match.");
         }
-
 
         return fteam;
     }

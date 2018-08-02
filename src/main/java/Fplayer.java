@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Fplayer extends Player {
 
     private float normalizedRating;
@@ -20,6 +22,11 @@ public class Fplayer extends Player {
         this.setCreativity(pl.getCreativity());
         this.setIct_index(pl.getIct_index());
         this.setElement_type(pl.getElement_type());
+        this.setChance_of_playing_next_round(pl.getChance_of_playing_next_round());
+        this.setChance_of_playing_this_round(pl.getChance_of_playing_this_round());
+        this.setSelected_by_percent(pl.getSelected_by_percent());
+        this.setTeam(pl.getTeam());
+
 
 
         //gk
@@ -96,6 +103,10 @@ public class Fplayer extends Player {
     protected void setPointsIct_index(float pointsIct_index) {
         this.pointsIct_index = pointsIct_index;
     }
+
+
+
+
 
 
     void calcPointsPerGameRating(Fplayer currentGk, int weight) {
@@ -181,6 +192,7 @@ public class Fplayer extends Player {
     }
 
 
+
     //print Fplayer
     @Override
     protected void printPlayer() {
@@ -188,9 +200,16 @@ public class Fplayer extends Player {
                 +this.getNow_cost() + " " + this.getNormalizedRating()));
     }
 
+
+    public static void printPlayers(List<Fplayer> playersToPrint) {
+        for (Fplayer fp : playersToPrint) {
+            System.out.println(String.format(fp.getFirst_name() + " " + fp.getSecond_name() + " " +
+                    +fp.getNow_cost() + " " + fp.getNormalizedRating()));
+        }
+
     /*@Override
     protected void printPlayer() {
         System.out.println(String.format(this.getFirst_name() + " " + this.getSecond_name() + " C: " + this.getCreativity() + " R: " + this.getPointsCreativity()));
     }*/
-
+    }
 }

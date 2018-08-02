@@ -11,9 +11,9 @@ public class Player {
     private int squad_number;
     private String news;
     private int now_cost;
-    private String news_added = null;
-    private boolean chance_of_playing_this_round;
-    private boolean chance_of_playing_next_round;
+    private String news_added;
+    private int chance_of_playing_this_round;
+    private int chance_of_playing_next_round;
     private String value_form;
     private String value_season;
     private int cost_change_start;
@@ -22,7 +22,7 @@ public class Player {
     private int cost_change_event_fall;
     private boolean in_dreamteam;
     private int dreamteam_count;
-    private String selected_by_percent;
+    private float selected_by_percent;
     private String form;
     private int transfers_out;
     private int transfers_in;
@@ -35,7 +35,7 @@ public class Player {
     private int total_points;
     private int event_points;
     private float points_per_game;
-    private String ep_this = null;
+    private String ep_this;
     private String ep_next;
     private boolean special;
     private int minutes;
@@ -158,19 +158,19 @@ public class Player {
         this.news_added = news_added;
     }
 
-    public boolean getChance_of_playing_this_round() {
+    public int getChance_of_playing_this_round() {
         return chance_of_playing_this_round;
     }
 
-    public void setChance_of_playing_this_round(boolean chance_of_playing_this_round) {
+    public void setChance_of_playing_this_round(int chance_of_playing_this_round) {
         this.chance_of_playing_this_round = chance_of_playing_this_round;
     }
 
-    public boolean getChance_of_playing_next_round() {
+    public int getChance_of_playing_next_round() {
         return chance_of_playing_next_round;
     }
 
-    public void setChance_of_playing_next_round(boolean chance_of_playing_next_round) {
+    public void setChance_of_playing_next_round(int chance_of_playing_next_round) {
         this.chance_of_playing_next_round = chance_of_playing_next_round;
     }
 
@@ -238,11 +238,11 @@ public class Player {
         this.dreamteam_count = dreamteam_count;
     }
 
-    public String getSelected_by_percent() {
+    public float getSelected_by_percent() {
         return selected_by_percent;
     }
 
-    public void setSelected_by_percent(String selected_by_percent) {
+    public void setSelected_by_percent(float selected_by_percent) {
         this.selected_by_percent = selected_by_percent;
     }
 

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.ArrayList;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Team {
+public class Club {
     @JsonIgnore ArrayList<Object> current_event_fixture = new ArrayList<Object>();
     @JsonIgnore ArrayList<Object> next_event_fixture = new ArrayList<Object>();
     private float id;
